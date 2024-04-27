@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">title</th>
+        <th scope="col">description</th>
+        <th scope="col">project</th>
+        <th scope="col">deadline</th>
+        <th scope="col">completed</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in data %}
+      <tr>
+        <td>{{i.title}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.project}}</td>
+        <td>{{i.deadline}}</td>
+        <td> <input type="checkbox" {% if i.completed %}checked{% endif %} disabled></td>
+        <td><button><a href="{% url 'edit' pk=i.pk %}">EDIT</a></button></td>
+        <td><button><a href="{% url 'delete' pk=i.pk %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
